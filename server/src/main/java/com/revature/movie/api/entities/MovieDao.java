@@ -41,6 +41,7 @@ public class MovieDao implements Dao<Movie> {
             ResultSet resultSet = statement.executeQuery("select * from movies");
             while (resultSet.next()) {
                 movie = new Movie();
+                movie.setId(resultSet.getInt("id"));
                 movie.setTitle(resultSet.getString("title"));
                 movie.setYear(resultSet.getInt("year"));
                 movies.add(movie);

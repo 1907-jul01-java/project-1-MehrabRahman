@@ -45,12 +45,4 @@ public class ConnectionUtil {
         }
         return connection;
     }
-
-    public void close() {
-        try {
-            this.connection.close();
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-    }
 }

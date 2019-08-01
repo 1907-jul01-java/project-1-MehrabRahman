@@ -2,15 +2,22 @@ let movies = [];
 let moviesElement = document.querySelector('#movies');
 
 function ListMovies(movies) {
-    return `<ul>${movies.map(ListMovie).join('')}</ul>`;
+    return `<table>
+                <tr>
+                    <th>Id</th>
+                    <th>Title</th>
+                    <th>Year</th>
+                </tr>
+                ${movies.map(ListMovie).join('')}
+            </table>`;
 }
 
 function ListMovie(movie) {
-    return `<li>
-                <p>Id: ${movie.id}</p>
-                <p>Title: ${movie.title}</p>
-                <p>Year: ${movie.year}</p>
-            </li>`;
+    return `<tr>
+                <td>${movie.id}</td>
+                <td>${movie.title}</td>
+                <td>${movie.year}</td>
+            </tr>`;
 }
 
 function updateMoviesElement() {
@@ -20,8 +27,9 @@ function updateMoviesElement() {
 function getMovies() {
     let xhr = new XMLHttpRequest();
     xhr.open('get', 'v1/movies/');
-    xhr.onload = function() { movies = JSON.parse(xhr.responseText); };
+    xhr.onload = function() { 
+        movies = JSON.parse(xhr.responseText); 
+        updateMoviesElement();
+    };
     xhr.send();
 }
-
-getMovies();

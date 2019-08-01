@@ -16,7 +16,7 @@ public class MovieService implements Service<Movie> {
 
     @Override
     public void insert(Movie movie) {
-
+        this.dao.insert(movie);
     }
 
     @Override
@@ -32,6 +32,6 @@ public class MovieService implements Service<Movie> {
     @Override
     public void delete() {
 		
-	}
+    }
 
 }
