@@ -55,7 +55,18 @@ public class MovieController {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-
 		resp.sendRedirect("/movie-api");
+	}
+
+	@POST
+	@Consumes(MediaType.APPLICATION_JSON)
+	public void insertMovieJSON(Movie movie) throws IOException {
+		try (Connection connection = new ConnectionUtil().getConnection()) {
+			MovieDao dao = new MovieDao(connection);
+			MovieService service = new MovieService(dao);
+			service.insert(movie);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 	}
 }
